@@ -17,17 +17,18 @@ import model.User;
 @WebServlet(urlPatterns= {"/blog"})
 public class BlogController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 
     public BlogController() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/blogView.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
 
@@ -38,32 +39,24 @@ public class BlogController extends HttpServlet {
 		String title = userBlog[0];
 		String description = userBlog[1];
 		LocalDate postedOn = LocalDate.now();
-		
+
 		User user = null;
 		Blog blog=new Blog(title,description,postedOn);
 		System.out.println(title);
 		System.out.println(description);
-		
+
 		blog.setBlogTitle(title);
 		blog.setBlogDescription(description);
 		blog.setDate(postedOn);
 
-		if(checkblog!) {
+
+		if(blogDetails!=null) {
 			request.setAttribute("blog", blog);
 			request.setAttribute("user",user);
 			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/blogView.jsp");
 			rd.forward(request, response);
 		}
-		else{
-			
-			request.setAttribute("error", "Your blog cannot be added as it contains offensive words, Please check your blog");
 
-			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/blogView.jsp");
-			rd.forward(request, response);
-			
-			
-		}
-		
 	}
 
 }
